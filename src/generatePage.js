@@ -22,8 +22,6 @@ function generatePage(teamData) {
 
 }
 
-
-
 function card(data) {
     var empty = '';
 
@@ -36,7 +34,7 @@ function card(data) {
           <ul class="card-text">
           <li>Employee Id: ${data[i].getId()}</li>
           <li>Email: ${data[i].getEmail()}</li>
-          <li>${data[i].extraInfo}</li>
+          ${getEmployeeInfo(data[i])}
           </ul>
           
         </div>
@@ -44,6 +42,16 @@ function card(data) {
     }
     return empty;
 
+}
+
+function getEmployeeInfo(data) {
+    if(data.getRole() === "Manager") {
+        return `<li>Office Number: ${data.officeNo}</li>`
+    } else if (data.getRole() === "Engineer") {
+        return `<li>GitHub: ${data.getGitHub()}</li>`
+    } else if (data.getRole()=== "Intern") {
+        return `<li>School: ${data.getSchool()}</li>`
+    }
 }
 
 module.exports = generatePage;

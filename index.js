@@ -61,13 +61,13 @@ function getManager () {
         .prompt([
             {
                 type: 'input',
-                name: 'extraInfo',
+                name: 'officeNo',
                 message: "What is the Manager's number?"
             }
         ]
         )
-        .then(({ extraInfo }) => {
-            baseEmployee(extraInfo, 'Manager');
+        .then(({ officeNo }) => {
+            baseEmployee(officeNo, 'Manager');
         })
 }
 
@@ -110,13 +110,13 @@ function getIntern () {
         .prompt([
             {
                 type: 'input',
-                name: 'extraInfo',
+                name: 'school',
                 message: "What is the intern's school name?"
             }
         ]
         )
-        .then(({ extraInfo }) => {
-            baseEmployee(extraInfo, 'Intern');
+        .then(({ school }) => {
+            baseEmployee(school, 'Intern');
         })
 }
 function getEngineer() {
@@ -124,13 +124,13 @@ function getEngineer() {
         .prompt([
             {
                 type: 'input',
-                name: 'extraInfo',
+                name: 'gitHub',
                 message: "What is the engineer's github username?"
             }
         ]
         )
-        .then(({ extraInfo }) => {
-            baseEmployee(extraInfo, 'Engineer');
+        .then(({ gitHub }) => {
+            baseEmployee(gitHub, 'Engineer');
         })
 }
 getManager();

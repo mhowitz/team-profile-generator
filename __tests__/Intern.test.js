@@ -9,5 +9,5 @@ test('gets intern object', () => {
 
 test('gets intern school', () => {
     const intern  = new Intern("Mikayla", '12', 'email', 'uofu');
-    expect(intern.extraInfo).toBe('uofu');
+    expect(intern.getSchool()).toBe('uofu');
 })
