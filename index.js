@@ -1,3 +1,136 @@
-const Employee = require('./lib/Employee');
 
-new Employee().getName();
+const inquirer = require('inquirer');
+const Engineer = require('./lib/Engineer');
+const Manager = require('./lib/Manager');
+const Intern = require('./lib/Intern');
+
+const fs = require('fs');
+const generatePage = require('./src/generatePage');
+
+function writeToFile(data) {
+    fs.writeFileSync('./dist/team.HTML', data);
+}
+const team = []
+function baseEmployee(extraInfo, role) {
+    inquirer
+    .prompt([
+        {
+        type: 'text',
+        name: 'name',
+        message: "What is the employee's name? (Required)"
+    },
+    {
+        type: 'text',
+        name: 'id',
+        message: "What is the employee's Id?"
+    },
+    {
+        type: 'text',
+        name: 'email',
+        message: "What is the eanager's email?"
+    },
+
+    
+])
+    .then(({ name, id, email })  => {
+        const userInput = generatePage(team);
+        writeToFile(userInput);
+
+        if(role === 'Manager') {
+        team.push(new Manager(name, id, email, extraInfo));
+        
+        promptNewEmployee();
+        } else if (role === 'Engineer') {
+            team.push(new Engineer(name, id, email, extraInfo));
+            promptNewEmployee();
+        } else if (role === 'Intern') {
+            team.push(new Intern(name, id, email, extraInfo));
+            promptNewEmployee();
+        } else {
+            return;
+        }
+        //console.log(data);
+
+        console.log(team);
+
+    });
+}
+
+function getManager () {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'extraInfo',
+                message: "What is the Manager's number?"
+            }
+        ]
+        )
+        .then(({ extraInfo }) => {
+            baseEmployee(extraInfo, 'Manager');
+        })
+}
+
+function promptNewEmployee () {
+    inquirer
+        .prompt([
+            {
+                type: 'confirm',
+                name: 'promptNew',
+                message: "Would you like to create another employee?",
+            }
+        ])
+        .then(({ promptNew }) => {
+            if(promptNew === true){
+              engineerOrIntern()
+            } else {
+                return;
+            }
+        })
+}
+function engineerOrIntern() {
+    inquirer
+        .prompt([
+            {
+                type: 'list',
+                name: 'eOrI',
+                message: "Which employee would you like to add next?",
+                choices: ["Engineer", "Intern"]
+            }
+        ])
+        .then(({ eOrI }) => {
+            if(eOrI === "Engineer") {
+                getEngineer();
+            } else {
+                getIntern();            }
+        })
+}
+function getIntern () {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'extraInfo',
+                message: "What is the intern's school name?"
+            }
+        ]
+        )
+        .then(({ extraInfo }) => {
+            baseEmployee(extraInfo, 'Intern');
+        })
+}
+function getEngineer() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'extraInfo',
+                message: "What is the engineer's github username?"
+            }
+        ]
+        )
+        .then(({ extraInfo }) => {
+            baseEmployee(extraInfo, 'Engineer');
+        })
+}
+getManager();
