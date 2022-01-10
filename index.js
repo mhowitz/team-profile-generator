@@ -17,7 +17,7 @@ function baseEmployee(extraInfo, role) {
         {
         type: 'text',
         name: 'name',
-        message: "What is the employee's name? (Required)"
+        message: "What is the employee's name?"
     },
     {
         type: 'text',
@@ -27,14 +27,13 @@ function baseEmployee(extraInfo, role) {
     {
         type: 'text',
         name: 'email',
-        message: "What is the eanager's email?"
+        message: "What is the employee's email?"
     },
 
     
 ])
     .then(({ name, id, email })  => {
-        const userInput = generatePage(team);
-        writeToFile(userInput);
+        
 
         if(role === 'Manager') {
         team.push(new Manager(name, id, email, extraInfo));
@@ -62,7 +61,7 @@ function getManager () {
             {
                 type: 'input',
                 name: 'officeNo',
-                message: "What is the Manager's number?"
+                message: "What is the Manager's office number?"
             }
         ]
         )
@@ -84,7 +83,8 @@ function promptNewEmployee () {
             if(promptNew === true){
               engineerOrIntern()
             } else {
-                return;
+                const userInput = generatePage(team);
+                writeToFile(userInput);
             }
         })
 }
@@ -111,7 +111,7 @@ function getIntern () {
             {
                 type: 'input',
                 name: 'school',
-                message: "What is the intern's school name?"
+                message: "What school does the intern attend?"
             }
         ]
         )
