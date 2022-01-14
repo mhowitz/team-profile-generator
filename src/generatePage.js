@@ -32,7 +32,7 @@ function card(data) {
         <div class="card-header bg-info">
         <h2>${data[i].getName()}</h2>
         <h6 class="card-title">${data[i].getRole()}  ${getIcon(data[i])}</h6></div>
-        <div class="card-body text-center">
+        <div class="card-body text-center p-2">
           <p>ID: ${data[i].getId()}</p>
           <p>Email: <a href = 'mailto: ${data[i].getEmail()}'>${data[i].getEmail()}</a></p>
           ${getEmployeeInfo(data[i])}
