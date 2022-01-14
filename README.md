@@ -29,12 +29,12 @@
   
   Here is a screenshot of what the Team HTML file will look like in the browser:
   
-  ![screenshot-of-browser](images/html.JPG)
+  ![screenshot-of-browser](images/html.jpg)
   
   
   Here is a screenshot of the prompts that the user answers in Node.js:
   
-  ![screenshot-of-terminal](images/node.JPG)
+  ![screenshot-of-terminal](images/node.jpg)
   
   ## License 
 
