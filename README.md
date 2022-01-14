@@ -1,5 +1,5 @@
 # team-profile-generator
-  # Professional ReadMe Generator
+  # Team Profile Generator
   ![badge](https://img.shields.io/badge/MIT-License-Green)
 
   Link to Repo: [GITHUB-REPO]https://github.com/mhowitz/team-profile-generator
